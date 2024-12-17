@@ -16,8 +16,8 @@ ROCExtinctionMonitorInterface::ROCExtinctionMonitorInterface(
 {
 	INIT_MF("." /*directory used is USER_DATA/LOG/.*/);
 
-	__MCOUT_INFO__("ROCExtinctionMonitorInterface instantiated with link: "
-	               << linkID_ << " and EventWindowDelayOffset = " << delay_ << __E__);
+	__COUT_INFO__ << "ROCExtinctionMonitorInterface instantiated with link: "
+	               << linkID_ << " and EventWindowDelayOffset = " << delay_ << __E__;
 }
 
 //==========================================================================================
@@ -71,21 +71,21 @@ uint16_t ROCExtinctionMonitorInterface::readEmulatorRegister(uint16_t address)
 //==================================================================================================
 void ROCExtinctionMonitorInterface::configure(void) try
 {
-	__MCOUT_INFO__(".... do nothing for TEM ROC... ");
+	__COUT_INFO__ << ".... do nothing for TEM ROC... " << __E__;
 
-	// __MCOUT_INFO__("......... Clear DCS FIFOs" << __E__);
+	// __COUT_INFO__ << "......... Clear DCS FIFOs" << __E__;
 	// this->writeRegister(0,1);
 	// this->writeRegister(0,0);
 
 	// setup needToResetAlignment using rising edge of register 22
 	// (i.e., force synchronization of ROC clock with 40MHz system clock)
-	//__MCOUT_INFO__("......... setup to synchronize ROC clock with 40 MHz clock
-	// edge" << __E__);  this->writeRegister(22,0);  this->writeRegister(22,1);
+	//__COUT_INFO__ << "......... setup to synchronize ROC clock with 40 MHz clock
+	// edge" << __E__;  this->writeRegister(22,0);  this->writeRegister(22,1);
 
 	// this->writeDelay(delay_);
 	// usleep(100);
 
-	//__MCOUT_INFO__ ("........." << " Set delay = " << delay_ << ", readback = "
+	//__COUT_INFO__ ("........." << " Set delay = " << delay_ << ", readback = "
 	//<< this->readDelay() << " ... ");
 
 	//__FE_COUT__ << "Debugging ROC-DCS" << __E__;
@@ -97,7 +97,7 @@ void ROCExtinctionMonitorInterface::configure(void) try
 	//{
 	//	val = this->readRegister(6);
 	//
-	//	//__MCOUT_INFO__(i << " read register 6 = " << val << __E__);
+	//	//__COUT_INFO__ << i << " read register 6 = " << val << __E__;
 	//	if(val != 4860)
 	//	{
 	//		__FE_SS__ << "Bad read not 4860! val = " << val << __E__;
@@ -105,7 +105,7 @@ void ROCExtinctionMonitorInterface::configure(void) try
 	//	}
 	//
 	//	val = this->readDelay();
-	//	//__MCOUT_INFO__(i << " read register 7 = " << val << __E__);
+	//	//__COUT_INFO__ << i << " read register 7 = " << val << __E__;
 	//	if(val != delay_)
 	//	{
 	//		__FE_SS__ << "Bad read not " << delay_ << "! val = " << val <<
@@ -119,18 +119,18 @@ void ROCExtinctionMonitorInterface::configure(void) try
 	//	highRateCheck();
 	//}
 
-	//__MCOUT_INFO__ ("......... reset DTC link loss counter ... ");
+	//__COUT_INFO__ ("......... reset DTC link loss counter ... ");
 	// resetDTCLinkLossCounter();
 }
 catch(const std::runtime_error& e)
 {
-	__FE_MOUT__ << "Error caught: " << e.what() << __E__;
+	__FE_COUT__ << "Error caught: " << e.what() << __E__;
 	throw;
 }
 catch(...)
 {
 	__FE_SS__ << "Unknown error caught. Check printouts!" << __E__;
-	__FE_MOUT__ << ss.str();
+	__FE_COUT__ << ss.str();
 	__FE_SS_THROW__;
 }
 
