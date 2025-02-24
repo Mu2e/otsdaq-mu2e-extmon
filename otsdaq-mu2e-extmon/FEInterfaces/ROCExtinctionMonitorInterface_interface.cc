@@ -16,8 +16,8 @@ ROCExtinctionMonitorInterface::ROCExtinctionMonitorInterface(
 {
 	INIT_MF("." /*directory used is USER_DATA/LOG/.*/);
 
-	__COUT_INFO__ << "ROCExtinctionMonitorInterface instantiated with link: "
-	               << linkID_ << " and EventWindowDelayOffset = " << delay_ << __E__;
+	__COUT_INFO__ << "ROCExtinctionMonitorInterface instantiated with link: " << linkID_
+	              << " and EventWindowDelayOffset = " << delay_ << __E__;
 }
 
 //==========================================================================================
@@ -69,7 +69,8 @@ uint16_t ROCExtinctionMonitorInterface::readEmulatorRegister(uint16_t address)
 }
 
 //==================================================================================================
-void ROCExtinctionMonitorInterface::configure(void) try
+void ROCExtinctionMonitorInterface::configure(void)
+try
 {
 	__COUT_INFO__ << ".... do nothing for TEM ROC... " << __E__;
 
